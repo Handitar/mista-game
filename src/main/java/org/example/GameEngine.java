@@ -1,5 +1,4 @@
 package org.example;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,7 +22,7 @@ public class GameEngine {
             return "error:Введіть місто!";
         }
 
-        String city = input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
+        String city = input.trim().toLowerCase();
 
         if (!repository.cityExists(city)) {
             return "error:Такого міста немає!";
@@ -33,7 +32,7 @@ public class GameEngine {
             return "error:Це місто вже було!";
         }
 
-        if (!lastChar.isEmpty() && !city.toLowerCase().startsWith(lastChar)) {
+        if (!lastChar.isEmpty() && !city.startsWith(lastChar)) {
             return "error:Місто має починатися на: " + lastChar.toUpperCase();
         }
 
@@ -51,9 +50,8 @@ public class GameEngine {
     }
 
     private String getLastValidChar(String word) {
-        String w = word.toLowerCase();
-        for (int i = w.length() - 1; i >= 0; i--) {
-            char c = w.charAt(i);
+        for (int i = word.length() - 1; i >= 0; i--) {
+            char c = word.charAt(i);
             if ("ьй'-і ".indexOf(c) == -1) {
                 return String.valueOf(c);
             }
@@ -63,7 +61,7 @@ public class GameEngine {
 
     private String getComputerCity() {
         for (String city : repository.getAllCities()) {
-            if (!usedCities.contains(city) && city.toLowerCase().startsWith(lastChar)) {
+            if (!usedCities.contains(city) && city.startsWith(lastChar)) {
                 usedCities.add(city);
                 lastChar = getLastValidChar(city);
                 return city;

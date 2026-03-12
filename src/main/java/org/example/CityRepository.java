@@ -24,7 +24,7 @@ public class CityRepository {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    cities.add(line.trim());
+                    cities.add(line.trim().toLowerCase());
                 }
             }
         } catch (IOException e) {
@@ -33,31 +33,30 @@ public class CityRepository {
         }
     }
 
-    //на всякий випадок
     private void loadDefaultCities() {
-        cities.add("Київ");
-        cities.add("Львів");
-        cities.add("Тернопіль");
-        cities.add("Одеса");
-        cities.add("Харків");
-        cities.add("Дніпро");
-        cities.add("Запоріжжя");
-        cities.add("Маріуполь");
-        cities.add("Чернігів");
-        cities.add("Житомир");
-        cities.add("Херсон");
-        cities.add("Івано-Франківськ");
-        cities.add("Полтава");
-        cities.add("Черкаси");
-        cities.add("Суми");
-        cities.add("Вінниця");
-        cities.add("Ужгород");
-        cities.add("Луцьк");
-        cities.add("Кам'янець-Подільський");
+        cities.add("київ");
+        cities.add("львів");
+        cities.add("тернопіль");
+        cities.add("одеса");
+        cities.add("харків");
+        cities.add("дніпро");
+        cities.add("запоріжжя");
+        cities.add("маріуполь");
+        cities.add("чернігів");
+        cities.add("житомир");
+        cities.add("херсон");
+        cities.add("івано-франківськ");
+        cities.add("полтава");
+        cities.add("черкаси");
+        cities.add("суми");
+        cities.add("вінниця");
+        cities.add("ужгород");
+        cities.add("луцьк");
+        cities.add("кам'янець-подільський");
     }
 
     public boolean cityExists(String city) {
-        return cities.contains(city);
+        return cities.contains(city.toLowerCase());
     }
 
     public Set<String> getAllCities() {

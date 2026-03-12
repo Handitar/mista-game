@@ -7,14 +7,14 @@ public class AppLauncher {
             CityRepository repository = new CityRepository();
             GameEngine gameEngine = new GameEngine(repository);
 
-            showWelcome(repository, gameEngine);
+            showWelcome(gameEngine);
         });
     }
 
-    private static void showWelcome(CityRepository repository, GameEngine gameEngine) {
+    private static void showWelcome(GameEngine gameEngine) {
         new WelcomeView(() -> {
             gameEngine.resetGame();
-            new GameView(gameEngine, () -> showWelcome(repository, gameEngine));
+            new GameView(gameEngine, () -> showWelcome(gameEngine));
         });
     }
 }
